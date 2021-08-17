@@ -1,4 +1,4 @@
-name: branch
+name: push_master
 on:
   push:
     branches:
