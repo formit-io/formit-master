@@ -21,7 +21,8 @@ jobs:
         ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
-      - run: printenv
+      - run: echo $AWS_SECRET_ACCESS_KEY
+      - run: echo $AWS_ACCESS_KEY_ID
       - run: ./scripts/${{ matrix.module_name }}/plan.sh
       - uses: actions/upload-artifact@v2
         with:
