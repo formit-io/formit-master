@@ -60,6 +60,6 @@ resource "github_actions_organization_secret" "aws_secret_access_key" {
   plaintext_value = "NO_VALUE"
   
   lifecycle {
-    ignore_changes = ["plaintext_value"]
+    ignore_changes = [plaintext_value]
   }
 }
