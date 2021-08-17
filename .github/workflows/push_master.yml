@@ -18,6 +18,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.FORMIT_MASTER_AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: "eu-west-1"
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
       - run: ./scripts/${{ matrix.module_name }}/plan.sh
@@ -39,6 +40,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.FORMIT_MASTER_AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: "eu-west-1"
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
