@@ -17,12 +17,10 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.FORMIT_MASTER_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.FORMIT_MASTER_AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: "eu-west-1"
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        #GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
-      - run: echo $AWS_SECRET_ACCESS_KEY
-      - run: echo $AWS_ACCESS_KEY_ID
       - run: ./scripts/${{ matrix.module_name }}/plan.sh
       - uses: actions/upload-artifact@v2
         with:
