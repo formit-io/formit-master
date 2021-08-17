@@ -21,6 +21,7 @@ jobs:
         ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
+      - run: printenv
       - run: ./scripts/${{ matrix.module_name }}/plan.sh
       - uses: actions/upload-artifact@v2
         with:
