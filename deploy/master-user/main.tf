@@ -58,4 +58,8 @@ resource "github_actions_organization_secret" "aws_secret_access_key" {
   secret_name     = "FORMIT_MASTER_AWS_SECRET_ACCESS_KEY"
   visibility      = "all"
   plaintext_value = "NO_VALUE"
+  
+  lifecycle {
+    ignore_changes = ["plaintext_value"]
+  }
 }

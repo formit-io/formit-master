@@ -25,7 +25,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: plan
-          path: .out/*.tfplan
+          path: out/*.tfplan
   apply:
     name: Apply
     needs: plan
@@ -46,5 +46,5 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: plan
-          path: .out
+          path: out
       - run: ./scripts/${{ matrix.module_name }}/apply-plan.sh
