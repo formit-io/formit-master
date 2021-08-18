@@ -52,6 +52,10 @@ resource "github_actions_organization_secret" "aws_access_key_id" {
   secret_name     = "FORMIT_MASTER_AWS_ACCESS_KEY_ID"
   visibility      = "all"
   plaintext_value = aws_iam_access_key.master.id
+  
+  lifecycle {
+    ignore_changes = [updated_at, encrypted_value]
+  }
 }
 
 resource "github_actions_organization_secret" "aws_secret_access_key" {
@@ -60,6 +64,6 @@ resource "github_actions_organization_secret" "aws_secret_access_key" {
   plaintext_value = "NO_VALUE"
   
   lifecycle {
-    ignore_changes = [plaintext_value]
+    ignore_changes = [updated_at, encrypted_value, plaintext_value]
   }
 }
