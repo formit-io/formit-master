@@ -5,30 +5,8 @@ on:
       - 'master'
 
 jobs:
-  plan:
-    name: Plan
-    strategy:
-      matrix:
-        module_name: [ master-user ]
-    runs-on: ubuntu-latest
-    container:
-      image: alpine/terragrunt:1.0.4
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.FORMIT_MASTER_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.FORMIT_MASTER_AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: "eu-west-1"
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        ENVIRONMENT_NAME: prod
-    steps:
-      - uses: actions/checkout@v2
-      - run: ./scripts/${{ matrix.module_name }}/plan.sh
-      - uses: actions/upload-artifact@v2
-        with:
-          name: plan
-          path: out/*.tfplan
   apply:
     name: Apply
-    needs: plan
     strategy:
       matrix:
         module_name: [ master-user ]
@@ -43,8 +21,5 @@ jobs:
         ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: plan
-          path: out
-      - run: ./scripts/${{ matrix.module_name }}/apply-plan.sh
+      - run: terragrunt state rm aws_iam_access_key.master --terragrunt-working-dir "$GITHUB_WORKSPACE/deploy/master-user"
+      - run: terragunrt apply --terragrunt-working-dir "$GITHUB_WORKSPACE/deploy/master-user" -input=false -auto-approve
