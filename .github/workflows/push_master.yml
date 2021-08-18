@@ -21,5 +21,4 @@ jobs:
         ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
-      - run: terragrunt state rm aws_iam_access_key.master --terragrunt-working-dir "$GITHUB_WORKSPACE/deploy/master-user"
       - run: terragrunt apply --terragrunt-working-dir "$GITHUB_WORKSPACE/deploy/master-user" -input=false -auto-approve
