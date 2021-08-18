@@ -17,7 +17,6 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.FORMIT_MASTER_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.FORMIT_MASTER_AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: "eu-west-1"
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2
@@ -39,7 +38,6 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.FORMIT_MASTER_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.FORMIT_MASTER_AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: "eu-west-1"
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         ENVIRONMENT_NAME: prod
     steps:
       - uses: actions/checkout@v2

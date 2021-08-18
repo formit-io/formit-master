@@ -3,7 +3,3 @@ provider "aws" {
     tags = var.common_tags
   }
 }
-
-provider "github" {
-  owner = "formit-io"
-}
