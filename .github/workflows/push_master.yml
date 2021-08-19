@@ -19,6 +19,7 @@ jobs:
         AWS_DEFAULT_REGION: "eu-west-1"
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         ENVIRONMENT_NAME: prod
+        TF_MODULE_NAME: ${{ matrix.module_name }}
     steps:
       - uses: actions/checkout@v2
-      - run: terragrunt apply --terragrunt-working-dir "$GITHUB_WORKSPACE/deploy/master-user" -input=false -auto-approve
+      - run: terragrunt apply --terragrunt-working-dir "$GITHUB_WORKSPACE/deploy/$TF_MODULE_NAME" -input=false -auto-approve
