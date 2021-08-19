@@ -9,7 +9,7 @@ jobs:
     name: Apply
     strategy:
       matrix:
-        module_name: [ master-user ]
+        module_name: [ master-user, cloud9 ]
     runs-on: ubuntu-latest
     container:
       image: alpine/terragrunt:1.0.4
